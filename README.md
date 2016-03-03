@@ -2,7 +2,7 @@
 
 [![Circle CI](https://circleci.com/gh/mapbox/docbox.svg?style=svg)](https://circleci.com/gh/mapbox/docbox)
 
-**Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's just Markdown.
+**Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
 
 [![](https://farm2.staticflickr.com/1619/25089476199_5fc31f69df_o.png)](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html#delete-a-wobble)
 
@@ -46,9 +46,14 @@ To run tests:
 
 ## Deployment
 
-The `npm run build` command builds a `bundle.js` file that contains all of the JavaScript code and content needed to show the site, and creates an `index.html` file that already contains the site content. Note that this _replaces_ the existing `index.html` file, so it's best to run this only when deploying the site and to undo changes to `index.html` if you want to keep working on content.
+The `npm run build` command builds a `bundle.js` file that contains all the JavaScript code and content needed to show the site, and creates an `index.html` file that already contains the site content. Note that this _replaces_ the existing `index.html` file, so it's best to run this only when deploying the site and to undo changes to `index.html` if you want to keep working on content.
 
 1. Clone this repository
 	2. `git clone https://github.com/mapbox/docbox.git`
 2. `npm install`
 3. `npm run build`
+
+---
+
+Props to [Tripit's Slate project](https://github.com/tripit/slate), which served
+as the inspiration for Docbox's layout.
