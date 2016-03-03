@@ -4,6 +4,10 @@
 
 **Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's just Markdown.
 
+[![](https://farm2.staticflickr.com/1619/25089476199_5fc31f69df_o.png)](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html#delete-a-wobble)
+
+_[Demo documentation](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html)_
+
 **Docbox is a JavaScript application written with React.** The core magic is thanks to the [remark](http://remark.js.org/) Markdown parser, which enables the layout: after parsing a file into an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree), we can move examples to the right, prose to the left, and build the navigation system.
 
 **It has a supercharged test suite**. Our tests check for everything from broken links to invalid examples and structure problems: this way, the application is only concerned with output and you can proactively enforce consistency and correctness. We even extract JavaScript examples from documentation and test them with [eslint](http://eslint.org/)
