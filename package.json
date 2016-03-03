@@ -44,8 +44,6 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-pure-render": "^1.0.2",
-    "react-visibility-sensor": "^3.0.0",
-    "react-waypoint": "^1.2.0",
     "remark": "^3.2.0",
     "remark-highlight.js": "^2.0.0",
     "remark-html": "^2.0.2",
