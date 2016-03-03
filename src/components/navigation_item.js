@@ -1,0 +1,26 @@
+import React from 'react';
+import PureRenderMixin from 'react-pure-render/mixin';
+
+var NavigationItem = React.createClass({
+  mixins: [PureRenderMixin],
+  propTypes: {
+    sectionName: React.PropTypes.string.isRequired,
+    active: React.PropTypes.bool.isRequired,
+    handleClick: React.PropTypes.func.isRequired,
+    href: React.PropTypes.string.isRequired
+  },
+  onClick() {
+    this.props.handleClick(this.props.sectionName);
+  },
+  render() {
+    var {sectionName, href, active} = this.props;
+    return (<a
+      href={href}
+      onClick={this.onClick}
+      className={`line-height15 pad0x pad00y block ${active ? 'fill-darken0 quiet active round' : ''}`}>
+      {sectionName}
+    </a>);
+  }
+});
+
+module.exports = NavigationItem;
