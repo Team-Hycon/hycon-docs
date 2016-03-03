@@ -1,6 +1,9 @@
 import React from 'react';
 import Section from './section';
 import PureRenderMixin from 'react-pure-render/mixin';
+import GithubSlugger from 'github-slugger';
+let slugger = new GithubSlugger();
+let slug = title => { slugger.reset(); return slugger.slug(title); };
 
 function highlightTokens(str) {
   return str.replace(/{[\w_]+}/g,
@@ -92,7 +95,7 @@ function chunkifyAST(ast, language) {
         left.push(node);
       }
     });
-    return { left, right, title, preview };
+    return { left, right, title, preview, slug: slug(title) };
   });
 }
 
@@ -100,13 +103,11 @@ var Content = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
     ast: React.PropTypes.object.isRequired,
-    language: React.PropTypes.string.isRequired,
-    onSpy: React.PropTypes.func.isRequired
+    language: React.PropTypes.string.isRequired
   },
   render() {
     return (<div className='clearfix'>
       {chunkifyAST(this.props.ast, this.props.language).map((chunk, i) => <Section
-        onSpy={this.props.onSpy}
         chunk={chunk}
         key={i} />)}
     </div>);

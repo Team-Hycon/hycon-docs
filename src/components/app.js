@@ -68,24 +68,39 @@ var App = React.createClass({
   },
   componentDidMount() {
     this.mediaQueryChanged();
+    this.onScroll = debounce(this._onScroll, 100);
+    document.addEventListener('scroll', this.onScroll);
+    this._onScroll();
+  },
+  _onScroll() {
+    var sections = document.querySelectorAll('div.section');
+    if (!sections.length) return;
+    for (var i = 0; i < sections.length; i++) {
+      var rect = sections[i].getBoundingClientRect();
+      if (rect.bottom > 0) {
+        this.setState({
+          activeSection: sections[i].title
+        });
+        return;
+      }
+    }
   },
   mediaQueryChanged() {
-    var queries = {
-      mobile: this.state.mqls.mobile.matches,
-      tablet: this.state.mqls.tablet.matches,
-      desktop: this.state.mqls.desktop.matches
-    };
-    this.setState({ queries });
+    this.setState({
+      queries: {
+        mobile: this.state.mqls.mobile.matches,
+        tablet: this.state.mqls.tablet.matches,
+        desktop: this.state.mqls.desktop.matches
+      }
+    });
   },
   componentWillUnmount() {
     Object.keys(this.state.mqls).forEach(key =>
       this.state.mqls[key].removeListener(this.mediaQueryChanged));
+    document.body.removeEventListener('scroll', this.onScroll);
   },
   onChangeLanguage(language) {
     this.setState({ language });
-  },
-  onSpy(activeSection) {
-    this.setState({ activeSection });
   },
   componentDidUpdate(_, prevState) {
     if (prevState.activeSection !== this.state.activeSection) {
@@ -127,7 +142,6 @@ var App = React.createClass({
         <Content
           ast={ast}
           queries={queries}
-          onSpy={this.onSpy}
           language={this.state.language}/>
       </div>
 
@@ -143,10 +157,10 @@ var App = React.createClass({
 
       {/* Header */ }
       <div className={`fill-gray fixed-top ${queries.tablet ? 'pad1y pad2x col6' : 'pad0 width16'}`}>
-        <a href='/' className='active space-top1 space-left1 pin-topleft icon round fill-red dark pad0'></a>
+        <a href='/' className='active space-top1 space-left1 pin-topleft icon round fill-blue dark pad0 mapbox'></a>
         <div className={`strong small pad0 ${queries.mobile && 'space-left3'} ${queries.tablet ? 'space-left2' : 'space-left4 line-height15' }`}>
-          {queries.desktop ? 'Example API Documentation' :
-            queries.mobile ? 'API Docs' : 'Example API Docs'}
+          {queries.desktop ? 'API Documentation' :
+            queries.mobile ? 'API Docs' : 'API Docs'}
         </div>
         {queries.tablet && <div>
             <button
