@@ -103,17 +103,15 @@ describe('content', () => {
             expect(endpoint.length).toBeGreaterThan(0);
             expect(endpoint[0].value.toString()).toMatch(/^(PUT|POST|GET|DELETE|PATCH)/);
           });
-          if (!file.match(/(style|static_gl|maps|static_classic|uploads)/)) {
-            it('has python example', () => {
-              expect(select(chunk, 'code[lang=python]').length).toBeGreaterThan(0);
-            });
-            it('has js example', () => {
-              expect(select(chunk, 'code[lang=javascript]').length).toBeGreaterThan(0);
-            });
-            it('has curl example', () => {
-              expect(select(chunk, 'code[lang=curl]').length).toBeGreaterThan(0);
-            });
-          }
+          it('has python example', () => {
+            expect(select(chunk, 'code[lang=python]').length).toBeGreaterThan(0);
+          });
+          it('has js example', () => {
+            expect(select(chunk, 'code[lang=javascript]').length).toBeGreaterThan(0);
+          });
+          it('has curl example', () => {
+            expect(select(chunk, 'code[lang=curl]').length).toBeGreaterThan(0);
+          });
         });
       });
     });
