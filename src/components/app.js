@@ -79,7 +79,7 @@ var App = React.createClass({
       var rect = sections[i].getBoundingClientRect();
       if (rect.bottom > 0) {
         this.setState({
-          activeSection: sections[i].title
+          activeSection: sections[i].getAttribute('data-title')
         });
         return;
       }

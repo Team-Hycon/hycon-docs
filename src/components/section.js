@@ -27,7 +27,7 @@ var Section = React.createClass({
     let { chunk } = this.props;
     let { left, right, preview } = chunk;
     return (<div
-      title={chunk.title}
+      data-title={chunk.title}
       className={`section pad2y contain clearfix ${preview ? 'preview' : ''}`}>
       <div
         className='col6 pad2x prose clip'
