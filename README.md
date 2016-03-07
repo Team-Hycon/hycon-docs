@@ -4,7 +4,7 @@
 
 **Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
 
-[![](https://farm2.staticflickr.com/1619/25089476199_5fc31f69df_o.png)](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html#delete-a-wobble)
+[![](https://farm2.staticflickr.com/1534/24963539843_e26a00b3e1_b.jpg)](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html#delete-a-wobble)
 
 _[Demo documentation](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html)_
 
