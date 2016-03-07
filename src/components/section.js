@@ -3,18 +3,16 @@ import remark from 'remark';
 import remarkHTML from 'remark-html';
 import remarkHighlight from 'remark-highlight.js';
 import PureRenderMixin from 'react-pure-render/mixin';
+import { postHighlight } from '../../custom';
 
 function renderHighlighted(nodes) {
   return {
-    __html: remark()
-    .use(remarkHTML)
-    .stringify(remark().use(remarkHighlight).run({
-      type: 'root',
-      children: nodes
-    }))
-    .replace(
-      /<span class="hljs-string">"{timestamp}"<\/span>/g,
-      `<span class="hljs-string">"</span><a class='hljs-linked' href='#dates'>{timestamp}</a><span class="hljs-string">"</span>`)
+    __html: postHighlight(remark()
+      .use(remarkHTML)
+      .stringify(remark().use(remarkHighlight).run({
+        type: 'root',
+        children: nodes
+      })))
   };
 }
 
@@ -28,12 +26,12 @@ var Section = React.createClass({
     let { left, right, preview } = chunk;
     return (<div
       data-title={chunk.title}
-      className={`section pad2y contain clearfix ${preview ? 'preview' : ''}`}>
+      className={`keyline-top section contain clearfix ${preview ? 'preview' : ''}`}>
       <div
-        className='col6 pad2x prose clip'
+        className='space-bottom8 col6 pad2x prose clip'
         dangerouslySetInnerHTML={renderHighlighted(left)} />
       {right.length > 0 && <div
-        className='col6 pad2 prose dark space-top5 clip keyline-top fill-dark'
+        className='space-bottom4 col6 pad2 prose clip fill-light space-top5'
         dangerouslySetInnerHTML={renderHighlighted(right)} />}
     </div>);
   }

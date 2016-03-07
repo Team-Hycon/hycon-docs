@@ -5,11 +5,12 @@ import RoundedToggle from './rounded_toggle';
 import PureRenderMixin from 'react-pure-render/mixin';
 import GithubSlugger from 'github-slugger';
 import debounce from 'lodash.debounce';
+import { brandNames, brandClasses } from '../../custom';
 
 let slugger = new GithubSlugger();
 let slug = title => { slugger.reset(); return slugger.slug(title); };
 
-let languageOptions = ['curl', 'cli', 'python', 'javascript'];
+let languageOptions = ['cURL', 'CLI', 'Python', 'JavaScript'];
 
 let debouncedReplaceState = debounce(hash => {
   window.history.replaceState('', '', hash);
@@ -45,7 +46,7 @@ var App = React.createClass({
       return {
         mqls: mqls,
         queries: {},
-        language: 'curl',
+        language: 'cURL',
         activeSection: active,
         showNav: false
       };
@@ -57,7 +58,7 @@ var App = React.createClass({
         queries: {
           desktop: true
         },
-        language: 'curl',
+        language: 'cURL',
         activeSection: '',
         showNav: false
       };
@@ -126,11 +127,11 @@ var App = React.createClass({
 
       {/* Content background */ }
       {!queries.mobile && <div className={`fixed-top fixed-right ${queries.desktop && 'space-left16'}`}>
-        <div className='fill-dark col6 pin-right'></div>
+        <div className='fill-light col6 pin-right'></div>
       </div>}
 
       {/* Desktop nav */ }
-      {queries.desktop && <div className='space-top5 scroll-styled pad1 width16 sidebar fixed-left fill-light'>
+      {queries.desktop && <div className='space-top5 scroll-styled pad1 width16 sidebar fixed-left fill-dark dark'>
         <Navigation
           handleClick={this.handleClick}
           activeSection={activeSection}
@@ -142,12 +143,15 @@ var App = React.createClass({
         <Content
           ast={ast}
           queries={queries}
-          language={this.state.language}/>
+          language={this.state.language.toLowerCase()}/>
       </div>
 
       {/* Language toggle */ }
-      <div className={`fixed-top dark ${queries.desktop && 'space-left16'}`}>
-        <div className={`events fill-dark2 pad1 col6 pin-topright ${queries.mobile && 'space-top5 fixed-topright'}`}>
+      <div className={`fixed-top ${queries.desktop && 'space-left16'}`}>
+        <div className={`events fill-light bottom-shadow pad1 col6 pin-topright ${queries.tablet && 'dark fill-blue'} ${queries.mobile && 'space-top5 fixed-topright'}`}>
+          <div className='space-right1 small quiet inline'>
+            Show examples in:
+          </div>
           <RoundedToggle
             options={languageOptions}
             onChange={this.onChangeLanguage}
@@ -156,20 +160,20 @@ var App = React.createClass({
       </div>
 
       {/* Header */ }
-      <div className={`fill-gray fixed-top ${queries.tablet ? 'pad1y pad2x col6' : 'pad0 width16'}`}>
-        <a href='/' className='active space-top1 space-left1 pin-topleft icon round fill-blue dark pad0 mapbox'></a>
+      <div className={`fill-dark dark bottom-shadow fixed-top ${queries.tablet ? 'pad1y pad2x col6' : 'pad0 width16'}`}>
+        <a href='/' className={`active space-top1 space-left1 pin-topleft icon round dark pad0 ${brandClasses}`}></a>
         <div className={`strong small pad0 ${queries.mobile && 'space-left3'} ${queries.tablet ? 'space-left2' : 'space-left4 line-height15' }`}>
-          {queries.desktop ? 'API Documentation' :
-            queries.mobile ? 'API Docs' : 'API Docs'}
+          {queries.desktop ? brandNames.desktop :
+            queries.mobile ? brandNames.mobile : brandNames.tablet}
         </div>
         {queries.tablet && <div>
             <button
               onClick={this.toggleNav}
-              className={`short quiet pin-topright micro button rcon ${showNav ? 'caret-up' : 'caret-down'} space-right1 space-top1`}>
-              {activeSection}
+              className={`short quiet pin-topright button rcon ${showNav ? 'caret-up' : 'caret-down'} space-right1 space-top1`}>
+              <span className='micro'>{activeSection}</span>
             </button>
             {showNav && <div
-              className='fixed-left fill-light pin-left col6 pad2 scroll-styled space-top5'>
+              className='fixed-left keyline-top fill-dark pin-left col6 pad2 scroll-styled space-top5'>
                 <Navigation
                   handleClick={this.handleClick}
                   activeSection={activeSection}

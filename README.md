@@ -24,6 +24,12 @@ Documentation is written as Markdown files in the `content` directory, and is or
 
 We care about the ease of writing documentation. Docbox comes with batteries included: after you `npm install` the project, you can run `npm start` and its development server, [budo](https://github.com/mattdesl/budo), will serve the website locally and update automatically.
 
+### Requirements
+
+* Node v4 or higher
+* NPM
+* Git
+
 To run the site locally:
 
 1. Clone this repository

@@ -2,44 +2,9 @@ import React from 'react';
 import Section from './section';
 import PureRenderMixin from 'react-pure-render/mixin';
 import GithubSlugger from 'github-slugger';
+import { transformURL } from '../../custom';
 let slugger = new GithubSlugger();
 let slug = title => { slugger.reset(); return slugger.slug(title); };
-
-function highlightTokens(str) {
-  return str.replace(/{[\w_]+}/g,
-    (str) => '<span class="strong">' + str + '</span>')
-  .replace(
-    /{@2x}/g,
-    `<a title='Retina support: adding @2x to this URL will produce 2x scale images' href='#retina'>{@2x}</a>`);
-}
-
-function transformURL(node) {
-  let { value } = node;
-  let parts = value.split(/\s+/);
-  if (parts.length === 3) {
-    return {
-      type: 'html',
-      value: `<div class='endpoint'>
-        <div class='round-left pad0y pad1x fill-lighten0 code micro endpoint-method'>${parts[0]}</div>
-        <div class='fill-darken1 pad0 code micro endpoint-url'>${highlightTokens(parts[1])}</div>
-        <div class='endpoint-token contain fill-lighten0 pad0x round-topright'>
-          <span class='pad0 micro code'>${parts[2]}</span>
-          <a href='#access-tokens' class='center endpoint-scope space-top3 micro pad1x pin-top fill-lighten1 round-bottom'>
-            Token scope
-          </a>
-        </div>
-      </div>`
-    };
-  } else {
-    return {
-      type: 'html',
-      value: `<div class='endpoint'>
-        <div class='round-left pad0y pad1x fill-lighten0 code small endpoint-method'>${parts[0]}</div>
-        <div class='fill-darken1 pad0 code small endpoint-url'>${highlightTokens(parts[1])}</div>
-      </div>`
-    };
-  }
-}
 
 function chunkifyAST(ast, language) {
   var preview = false;
@@ -72,7 +37,9 @@ function chunkifyAST(ast, language) {
             right.push(node);
           }
         } else if (node.lang === 'endpoint') {
-          right.push(transformURL(node));
+          right.push(transformURL(node.value));
+        } else if (node.lang === null) {
+          left.push(node);
         }
       } else if (node.type === 'heading' && node.depth >= 4) {
         right.push(node);

@@ -17,7 +17,7 @@ var NavigationItem = React.createClass({
     return (<a
       href={href}
       onClick={this.onClick}
-      className={`line-height15 pad0x pad00y block ${active ? 'fill-darken0 quiet active round' : ''}`}>
+      className={`line-height15 pad0x pad00y quiet block ${active ? 'fill-lighten0 round' : ''}`}>
       {sectionName}
     </a>);
   }

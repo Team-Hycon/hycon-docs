@@ -55,7 +55,7 @@ wobbles.list()
 Creates a new, empty wobble.
 
 ```endpoint
-POST /wobbles/v1/{username} wobbles:write
+POST /wobbles/v1/{username}
 ```
 
 #### Example request
@@ -114,7 +114,7 @@ Property | Description
 Returns a single wobble.
 
 ```endpoint
-GET /wobbles/v1/{username}/{wobble_id} wobbles:read
+GET /wobbles/v1/{username}/{wobble_id}
 ```
 
 Retrieve information about an existing wobble.
@@ -156,7 +156,7 @@ client.readWobble('wobble-id',
 Updates the properties of a particular wobble.
 
 ```endpoint
-PATCH /wobbles/v1/{username}/{wobble_id} wobbles:write
+PATCH /wobbles/v1/{username}/{wobble_id}
 ```
 
 #### Example request
@@ -217,7 +217,7 @@ Property | Description
 Deletes a wobble, including all wibbles it contains.
 
 ```endpoint
-DELETE /wobbles/v1/{username}/{wobble_id} wobbles:write
+DELETE /wobbles/v1/{username}/{wobble_id}
 ```
 
 #### Example request
@@ -250,7 +250,7 @@ List all the wibbles in a wobble. The response body will be a
 WobbleCollection.
 
 ```endpoint
-GET /wobbles/v1/{username}/{wobble_id}/wibbles wobbles:read
+GET /wobbles/v1/{username}/{wobble_id}/wibbles
 ```
 
 #### Example request
@@ -304,7 +304,7 @@ with the given ID in the wobble, it will be replaced. If there isn't
 a wibble with that ID, a new wibble is created.
 
 ```endpoint
-PUT /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id} wobbles:write
+PUT /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
 ```
 
 #### Example request
@@ -362,7 +362,7 @@ Property | Description
 Retrieves a wibble in a wobble.
 
 ```endpoint
-GET /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id} wobbles:read
+GET /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
 ```
 
 #### Example request
@@ -403,7 +403,7 @@ wibble = wobbles.read_wibble(wobble_id, '2').json()
 Removes a wibble from a wobble.
 
 ```endpoint
-DELETE /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id} wobbles:write
+DELETE /wobbles/v1/{username}/{wobble_id}/wibbles/{wibble_id}
 ```
 
 #### Example request

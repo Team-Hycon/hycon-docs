@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-pure-render/mixin';
 import NavigationItem from './navigation_item';
+import { backLink } from '../../custom';
 
 function getAllInSectionFromChild(headings, idx) {
   for (var i = idx; i > 0; i--) {
@@ -65,7 +66,7 @@ var Navigation = React.createClass({
           if (child.depth === 1) {
             return (<div key={i}
               onClick={this.handleClick}
-              className='small pad0x strong space-top1'>{sectionName}</div>);
+              className='small pad0x quiet space-top1'>{sectionName}</div>);
           } else if (child.depth === 2) {
             return (<NavigationItem
               key={i}
@@ -87,6 +88,7 @@ var Navigation = React.createClass({
             }
           }
         })}
+        <a href='/' className='space-top2 pad1y dark keyline-top block small quiet'>{backLink}</a>
     </div>);
   }
 });

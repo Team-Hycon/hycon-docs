@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import remark from 'remark';
 import slug from 'remark-slug';
-import content from './content';
+import content from '../custom/content';
 
-var ast = remark().use(slug).run(remark().parse(content));
+var ast = remark()
+  .use(slug)
+  .run(remark().parse(content));
 
 ReactDOM.render(
   <App ast={ast} content={content} />,
