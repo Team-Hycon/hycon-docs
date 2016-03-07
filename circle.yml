@@ -1,6 +1,7 @@
 machine:
   node:
     version: 5
+test:
   post:
     - npm run build
     - mv index.html $CIRCLE_ARTIFACTS
