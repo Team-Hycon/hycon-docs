@@ -4,9 +4,9 @@
 
 **Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
 
-[![](https://farm2.staticflickr.com/1534/24963539843_e26a00b3e1_b.jpg)](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html#delete-a-wobble)
+[![](https://farm2.staticflickr.com/1534/24963539843_e26a00b3e1_b.jpg)](https://circle-artifacts.com/gh/mapbox/docbox/20/artifacts/0/tmp/circle-artifacts.hVKLQl3/index.html)
 
-_[Demo documentation](https://circle-artifacts.com/gh/mapbox/docbox/4/artifacts/0/tmp/circle-artifacts.8gUjTxc/index.html)_
+_[Demo documentation](https://circle-artifacts.com/gh/mapbox/docbox/20/artifacts/0/tmp/circle-artifacts.hVKLQl3/index.html)_
 
 **Docbox is a JavaScript application written with React.** The core magic is thanks to the [remark](http://remark.js.org/) Markdown parser, which enables the layout: after parsing a file into an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree), we can move examples to the right, prose to the left, and build the navigation system.
 
@@ -19,6 +19,10 @@ _Docbox is a [Mapbox](http://mapbox.com/) community open source project. We buil
 ## Writing Documentation
 
 Documentation is written as Markdown files in the `content` directory, and is organized by the `src/content.js` file - that file requires each documentation page and puts them in order. This demo has a little bit of content - [content/example.md](content/example.md) and [content/introduction.md](content/introduction.md), so that there's an example to follow.
+
+## Customization
+
+All custom code - code that relates to brands and specifics of APIs - is in the `./custom` directory. Content is [custom/content.js](custom/content.js) and brand names & tweaks are in [custom/index.js](custom/index.js), with inline documentation for both.
 
 ## Development
 
