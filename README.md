@@ -66,4 +66,4 @@ The `npm run build` command builds a `bundle.js` file that contains all the Java
 ---
 
 Props to [Tripit's Slate project](https://github.com/tripit/slate), which served
-as the inspiration for Docbox's layout.
+as the inspiration for Docbox's layout. We also maintain a [list of similar projects](https://github.com/mapbox/docbox/wiki).
