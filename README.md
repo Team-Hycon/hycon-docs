@@ -18,7 +18,7 @@ _Docbox is a [Mapbox](http://mapbox.com/) community open source project. We buil
 
 ## Writing Documentation
 
-Documentation is written as Markdown files in the `content` directory, and is organized by the `src/content.js` file - that file requires each documentation page and puts them in order. This demo has a little bit of content - [content/example.md](content/example.md) and [content/introduction.md](content/introduction.md), so that there's an example to follow.
+Documentation is written as Markdown files in the `content` directory, and is organized by the `custom/content.js` file - that file requires each documentation page and puts them in order. This demo has a little bit of content - [content/example.md](content/example.md) and [content/introduction.md](content/introduction.md), so that there's an example to follow.
 
 ## Customization
 
