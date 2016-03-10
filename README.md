@@ -1,8 +1,8 @@
-# Docbox
+# Docbox :blue_book:
 
 [![Circle CI](https://circleci.com/gh/mapbox/docbox.svg?style=svg)](https://circleci.com/gh/mapbox/docbox)
 
-**Docbox is an open source version of Mapbox's REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
+**Docbox is an open source version of [Mapbox](https://mapbox.com/)'s REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
 
 [![](https://farm2.staticflickr.com/1534/24963539843_e26a00b3e1_b.jpg)](https://circle-artifacts.com/gh/mapbox/docbox/20/artifacts/0/tmp/circle-artifacts.hVKLQl3/index.html)
 
@@ -64,6 +64,8 @@ The `npm run build` command builds a `bundle.js` file that contains all the Java
 3. `npm run build`
 
 ---
+
+### [FAQ & See Also](https://github.com/mapbox/docbox/wiki)
 
 Props to [Tripit's Slate project](https://github.com/tripit/slate), which served
 as the inspiration for Docbox's layout. We also maintain a [list of similar projects](https://github.com/mapbox/docbox/wiki).
