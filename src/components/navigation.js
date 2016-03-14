@@ -28,7 +28,7 @@ var Navigation = React.createClass({
   propTypes: {
     ast: React.PropTypes.object.isRequired,
     activeSection: React.PropTypes.string,
-    handleClick: React.PropTypes.func.isRequired
+    navigationItemClicked: React.PropTypes.func.isRequired
   },
   render() {
     var activeHeadings = [];
@@ -65,13 +65,13 @@ var Navigation = React.createClass({
           var active = sectionName === this.props.activeSection;
           if (child.depth === 1) {
             return (<div key={i}
-              onClick={this.handleClick}
+              onClick={this.navigationItemClicked}
               className='small pad0x quiet space-top1'>{sectionName}</div>);
           } else if (child.depth === 2) {
             return (<NavigationItem
               key={i}
               href={`#${child.data.id}`}
-              handleClick={this.props.handleClick}
+              onClick={this.props.navigationItemClicked}
               active={active}
               sectionName={sectionName} />);
           } else if (child.depth === 3) {
@@ -81,7 +81,7 @@ var Navigation = React.createClass({
                 className='space-left1'>
                   <NavigationItem
                     href={`#${child.data.id}`}
-                    handleClick={this.props.handleClick}
+                    onClick={this.props.navigationItemClicked}
                     active={active}
                     sectionName={sectionName} />
                 </div>);

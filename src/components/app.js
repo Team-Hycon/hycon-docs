@@ -28,9 +28,9 @@ var App = React.createClass({
     if (process.browser) {
       let hash = window.location.hash.split('#').pop();
       let mqls = {
-        'desktop': window.matchMedia('(min-width: 961px)'),
-        'tablet': window.matchMedia('(max-width: 960px)'),
-        'mobile': window.matchMedia('(max-width: 640px)')
+        desktop: window.matchMedia('(min-width: 961px)'),
+        tablet: window.matchMedia('(max-width: 960px)'),
+        mobile: window.matchMedia('(max-width: 640px)')
       };
       Object.keys(mqls).forEach(key => {
         mqls[key].addListener(this.mediaQueryChanged);
@@ -44,10 +44,14 @@ var App = React.createClass({
         }
       }
       return {
+        // media queryMatches
         mqls: mqls,
-        queries: {},
+        // object of currently matched queries, like { desktop: true }
+        queryMatches: {},
         language: 'cURL',
+        columnMode: 2,
         activeSection: active,
+        // for the toggle-able navigation on mobile
         showNav: false
       };
     } else {
@@ -55,7 +59,7 @@ var App = React.createClass({
         mqls: {
           desktop: true
         },
-        queries: {
+        queryMatches: {
           desktop: true
         },
         language: 'cURL',
@@ -88,7 +92,7 @@ var App = React.createClass({
   },
   mediaQueryChanged() {
     this.setState({
-      queries: {
+      queryMatches: {
         mobile: this.state.mqls.mobile.matches,
         tablet: this.state.mqls.tablet.matches,
         desktop: this.state.mqls.desktop.matches
@@ -107,48 +111,58 @@ var App = React.createClass({
     if (prevState.activeSection !== this.state.activeSection) {
       // when the section changes, replace the hash
       debouncedReplaceState(`#${slug(this.state.activeSection)}`);
-    } else if (prevState.language !== this.state.language) {
+    } else if (prevState.language !== this.state.language ||
+      prevState.columnMode !== this.state.columnMode) {
       // when the language changes, use the hash to set scroll
-      window.location = window.location;
+      window.location.hash = window.location.hash;
     }
   },
-  handleClick(activeSection) {
+  navigationItemClicked(activeSection) {
     setTimeout(() => {
       this.setState({ activeSection });
     }, 10);
-    if (!this.state.queries.desktop) {
+    if (!this.state.queryMatches.desktop) {
       this.toggleNav();
     }
   },
+  toggleColumnMode() {
+    this.setState({
+      columnMode: this.state.columnMode === 1 ? 2 : 1
+    });
+  },
   render() {
     let { ast } = this.props;
-    let { activeSection, queries, showNav } = this.state;
+    let { activeSection, queryMatches, showNav, columnMode } = this.state;
+    let col1 = columnMode === 1 && queryMatches.desktop;
     return (<div className='container unlimiter'>
 
       {/* Content background */ }
-      {!queries.mobile && <div className={`fixed-top fixed-right ${queries.desktop && 'space-left16'}`}>
+      {(!col1 && !queryMatches.mobile) && <div className={`fixed-top fixed-right ${queryMatches.desktop && 'space-left16'}`}>
         <div className='fill-light col6 pin-right'></div>
       </div>}
 
       {/* Desktop nav */ }
-      {queries.desktop && <div className='space-top5 scroll-styled pad1 width16 sidebar fixed-left fill-dark dark'>
+      {queryMatches.desktop && <div className='space-top5 scroll-styled pad1 width16 sidebar fixed-left fill-dark dark'>
         <Navigation
-          handleClick={this.handleClick}
+          navigationItemClicked={this.navigationItemClicked}
           activeSection={activeSection}
           ast={ast} />
       </div>}
 
       {/* Content */ }
-      <div className={`${queries.desktop && 'space-left16'}`}>
-        <Content
-          ast={ast}
-          queries={queries}
-          language={this.state.language.toLowerCase()}/>
+      <div className={`${queryMatches.desktop && 'space-left16'}`}>
+        <div className={col1 ? 'col8 margin1' : ''}>
+          <Content
+            leftClassname={col1 ? 'space-bottom4 pad2x prose clip' : 'space-bottom8 col6 pad2x prose clip'}
+            rightClassname={col1 ? 'space-bottom2 pad2 prose clip fill-light space-top5' : 'space-bottom4 col6 pad2 prose clip fill-light space-top5'}
+            ast={ast}
+            language={this.state.language.toLowerCase()}/>
+        </div>
       </div>
 
       {/* Language toggle */ }
-      <div className={`fixed-top ${queries.desktop && 'space-left16'}`}>
-        <div className={`events fill-light bottom-shadow pad1 col6 pin-topright ${queries.tablet && 'dark fill-blue'} ${queries.mobile && 'space-top5 fixed-topright'}`}>
+      <div className={`fixed-top ${queryMatches.desktop && 'space-left16'}`}>
+        <div className={`events fill-light bottom-shadow pad1 ${col1 ? '' : 'col6 pin-topright'} ${queryMatches.tablet ? 'dark fill-blue' : ''} ${queryMatches.mobile ? 'space-top5 fixed-topright' : ''}`}>
           <div className='space-right1 small quiet inline'>
             Show examples in:
           </div>
@@ -156,29 +170,39 @@ var App = React.createClass({
             options={languageOptions}
             onChange={this.onChangeLanguage}
             active={this.state.language} />
+          <div className='fr pad0'>
+            {queryMatches.desktop ?
+              <a
+                title={`Display as ${col1 ? 2 : 1} column`}
+                onClick={this.toggleColumnMode}
+                style={{ cursor: 'pointer' }}
+                className={`icon quiet caret-${col1 ? 'right' : 'left'} pad0 fill-darken0 round`}></a> : null}
+          </div>
         </div>
       </div>
 
       {/* Header */ }
-      <div className={`fill-dark dark bottom-shadow fixed-top ${queries.tablet ? 'pad1y pad2x col6' : 'pad0 width16'}`}>
+      <div className={`fill-dark dark bottom-shadow fixed-top ${queryMatches.tablet ? 'pad1y pad2x col6' : 'pad0 width16'}`}>
         <a href='/' className={`active space-top1 space-left1 pin-topleft icon round dark pad0 ${brandClasses}`}></a>
-        <div className={`strong small pad0 ${queries.mobile && 'space-left3'} ${queries.tablet ? 'space-left2' : 'space-left4 line-height15' }`}>
-          {queries.desktop ? brandNames.desktop :
-            queries.mobile ? brandNames.mobile : brandNames.tablet}
+        <div className={`strong small pad0
+          ${queryMatches.mobile ? 'space-left3' : ''}
+          ${queryMatches.tablet ? 'space-left2' : 'space-left4 line-height15' }`}>
+          {queryMatches.desktop ? brandNames.desktop :
+            queryMatches.mobile ? brandNames.mobile : brandNames.tablet}
         </div>
-        {queries.tablet && <div>
-            <button
-              onClick={this.toggleNav}
-              className={`short quiet pin-topright button rcon ${showNav ? 'caret-up' : 'caret-down'} space-right1 space-top1`}>
-              <span className='micro'>{activeSection}</span>
-            </button>
-            {showNav && <div
-              className='fixed-left keyline-top fill-dark pin-left col6 pad2 scroll-styled space-top5'>
-                <Navigation
-                  handleClick={this.handleClick}
-                  activeSection={activeSection}
-                  ast={ast} />
-              </div>}
+        {queryMatches.tablet && <div>
+          <button
+            onClick={this.toggleNav}
+            className={`short quiet pin-topright button rcon ${showNav ? 'caret-up' : 'caret-down'} space-right1 space-top1`}>
+            <span className='micro'>{activeSection}</span>
+          </button>
+          {showNav && <div
+            className='fixed-left keyline-top fill-dark pin-left col6 pad2 scroll-styled space-top5'>
+              <Navigation
+                navigationItemClicked={this.navigationItemClicked}
+                activeSection={activeSection}
+                ast={ast} />
+            </div>}
           </div>}
       </div>
 

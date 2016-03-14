@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-pure-render/mixin';
 var RoundedToggle = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
-    options: React.PropTypes.array.isRequired,
+    options: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     active: React.PropTypes.string.isRequired,
     onChange: React.PropTypes.func.isRequired
   },
@@ -16,7 +16,7 @@ var RoundedToggle = React.createClass({
           key={option}
           option={option}
           onClick={this.props.onChange}
-          className={'strong ' + (option === active ? 'active': '')} />)}
+          className={`strong ${option === active ? 'active': ''}`} />)}
     </div>);
   }
 });

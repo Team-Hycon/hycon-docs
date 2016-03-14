@@ -19,19 +19,21 @@ function renderHighlighted(nodes) {
 var Section = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
-    chunk: React.PropTypes.object.isRequired
+    chunk: React.PropTypes.object.isRequired,
+    leftClassname: React.PropTypes.string.isRequired,
+    rightClassname: React.PropTypes.string.isRequired
   },
   render() {
-    let { chunk } = this.props;
+    let { chunk, leftClassname, rightClassname } = this.props;
     let { left, right, preview } = chunk;
     return (<div
       data-title={chunk.title}
       className={`keyline-top section contain clearfix ${preview ? 'preview' : ''}`}>
       <div
-        className='space-bottom8 col6 pad2x prose clip'
+        className={leftClassname}
         dangerouslySetInnerHTML={renderHighlighted(left)} />
       {right.length > 0 && <div
-        className='space-bottom4 col6 pad2 prose clip fill-light space-top5'
+        className={rightClassname}
         dangerouslySetInnerHTML={renderHighlighted(right)} />}
     </div>);
   }

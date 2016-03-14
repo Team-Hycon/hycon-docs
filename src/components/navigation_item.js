@@ -6,11 +6,11 @@ var NavigationItem = React.createClass({
   propTypes: {
     sectionName: React.PropTypes.string.isRequired,
     active: React.PropTypes.bool.isRequired,
-    handleClick: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func.isRequired,
     href: React.PropTypes.string.isRequired
   },
   onClick() {
-    this.props.handleClick(this.props.sectionName);
+    this.props.onClick(this.props.sectionName);
   },
   render() {
     var {sectionName, href, active} = this.props;

@@ -70,11 +70,16 @@ var Content = React.createClass({
   mixins: [PureRenderMixin],
   propTypes: {
     ast: React.PropTypes.object.isRequired,
-    language: React.PropTypes.string.isRequired
+    language: React.PropTypes.string.isRequired,
+    leftClassname: React.PropTypes.string.isRequired,
+    rightClassname: React.PropTypes.string.isRequired
   },
   render() {
+    let { ast, language, leftClassname, rightClassname } = this.props;
     return (<div className='clearfix'>
-      {chunkifyAST(this.props.ast, this.props.language).map((chunk, i) => <Section
+      {chunkifyAST(ast, language).map((chunk, i) => <Section
+        leftClassname={leftClassname}
+        rightClassname={rightClassname}
         chunk={chunk}
         key={i} />)}
     </div>);
