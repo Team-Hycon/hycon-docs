@@ -6,11 +6,13 @@ import PureRenderMixin from 'react-pure-render/mixin';
 import GithubSlugger from 'github-slugger';
 import debounce from 'lodash.debounce';
 import { brandNames, brandClasses } from '../../custom';
+import qs from 'querystring';
 
 let slugger = new GithubSlugger();
 let slug = title => { slugger.reset(); return slugger.slug(title); };
 
 let languageOptions = ['cURL', 'CLI', 'Python', 'JavaScript'];
+let defaultLanguage = 'cURL';
 
 let debouncedReplaceState = debounce(hash => {
   window.history.replaceState('', '', hash);
@@ -27,6 +29,9 @@ var App = React.createClass({
 
     if (process.browser) {
       let hash = window.location.hash.split('#').pop();
+      let languageFromURL = qs.parse(window.location.search.substring(1)).language;
+      let language = languageOptions.includes(languageFromURL) ?
+        languageFromURL : defaultLanguage;
       let mqls = {
         desktop: window.matchMedia('(min-width: 961px)'),
         tablet: window.matchMedia('(max-width: 960px)'),
@@ -48,7 +53,7 @@ var App = React.createClass({
         mqls: mqls,
         // object of currently matched queries, like { desktop: true }
         queryMatches: {},
-        language: 'cURL',
+        language: language,
         columnMode: 2,
         activeSection: active,
         // for the toggle-able navigation on mobile
@@ -62,7 +67,7 @@ var App = React.createClass({
         queryMatches: {
           desktop: true
         },
-        language: 'cURL',
+        language: defaultLanguage,
         activeSection: '',
         showNav: false
       };
@@ -105,7 +110,12 @@ var App = React.createClass({
     document.body.removeEventListener('scroll', this.onScroll);
   },
   onChangeLanguage(language) {
-    this.setState({ language });
+    this.setState({ language }, () => {
+      if (window.history) {
+        window.history.pushState(null, null,
+          `?${qs.stringify({ language })}${window.location.hash}`);
+      }
+    });
   },
   componentDidUpdate(_, prevState) {
     if (prevState.activeSection !== this.state.activeSection) {
