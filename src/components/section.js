@@ -1,7 +1,7 @@
 import React from 'react';
 import remark from 'remark';
 import remarkHTML from 'remark-html';
-import remarkHighlight from 'remark-highlight.js';
+import remarkHighlight from '../highlight';
 import PureRenderMixin from 'react-pure-render/mixin';
 import { postHighlight } from '../../custom';
 
