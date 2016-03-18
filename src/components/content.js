@@ -3,6 +3,7 @@ import Section from './section';
 import PureRenderMixin from 'react-pure-render/mixin';
 import GithubSlugger from 'github-slugger';
 import { transformURL } from '../../custom';
+import remark from 'remark';
 let slugger = new GithubSlugger();
 let slug = title => { slugger.reset(); return slugger.slug(title); };
 
@@ -76,11 +77,13 @@ var Content = React.createClass({
   },
   render() {
     let { ast, language, leftClassname, rightClassname } = this.props;
+    let parser = remark();
     return (<div className='clearfix'>
       {chunkifyAST(ast, language).map((chunk, i) => <Section
         leftClassname={leftClassname}
         rightClassname={rightClassname}
         chunk={chunk}
+        parser={parser}
         key={i} />)}
     </div>);
   }
