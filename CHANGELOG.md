@@ -1,3 +1,8 @@
+### March 22, 2016
+
+* Fixes non-unique IDs on section headers.
+* You can now run `npm run build` multiple times without any problems.
+
 ### March 17, 2016
 
 * Support for linking to specific languages. URLs were previously like
