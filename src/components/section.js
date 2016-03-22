@@ -1,14 +1,15 @@
 import React from 'react';
+import remark from 'remark';
 import remarkHTML from 'remark-html';
 import remarkHighlight from '../highlight';
 import PureRenderMixin from 'react-pure-render/mixin';
 import { postHighlight } from '../../custom';
 
-function renderHighlighted(nodes, parser) {
+function renderHighlighted(nodes) {
   return {
-    __html: postHighlight(parser
+    __html: postHighlight(remark()
       .use(remarkHTML)
-      .stringify(parser.use(remarkHighlight).run({
+      .stringify(remark().use(remarkHighlight).run({
         type: 'root',
         children: nodes
       })))
@@ -20,8 +21,7 @@ var Section = React.createClass({
   propTypes: {
     chunk: React.PropTypes.object.isRequired,
     leftClassname: React.PropTypes.string.isRequired,
-    rightClassname: React.PropTypes.string.isRequired,
-    parser: React.PropTypes.object.isRequired
+    rightClassname: React.PropTypes.string.isRequired
   },
   render() {
     let { chunk, leftClassname, rightClassname } = this.props;
@@ -31,10 +31,10 @@ var Section = React.createClass({
       className={`keyline-top section contain clearfix ${preview ? 'preview' : ''}`}>
       <div
         className={leftClassname}
-        dangerouslySetInnerHTML={renderHighlighted(left, this.props.parser)} />
+        dangerouslySetInnerHTML={renderHighlighted(left)} />
       {right.length > 0 && <div
         className={rightClassname}
-        dangerouslySetInnerHTML={renderHighlighted(right, this.props.parser)} />}
+        dangerouslySetInnerHTML={renderHighlighted(right)} />}
     </div>);
   }
 });
