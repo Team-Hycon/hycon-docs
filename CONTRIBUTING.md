@@ -61,6 +61,37 @@ Each method should have H4 headers for examples:
 There should be four examples under each header, one for each library. Use
 [three backtick markdown format with syntax highlighting](https://help.github.com/articles/github-flavored-markdown/#syntax-highlighting):
 
+## Adding a new SDK/language to examples pane
+
+To add a new SDK/language to the right side examples pane:
+
+- add the new language to the list of `languageOptions` in `/src/components/app.js`
+  to add it to the language toggle
+- add to the list of SDKs in `/content/introduction.md` with a link to the SDK documentation
+- add highlighting for the new language in `/src/highlight.js` by importing the
+  language and registering the language:
+
+```
+import java from 'highlight.js/lib/languages/java';
+
+...
+
+hljs.registerLanguage('java', java);
+```
+
+- add a test for the new SDK in `/test/content.js`:
+
+```
+it('has java example', () => {
+  expect(select(chunk, 'code[lang=java]').length).toBeGreaterThan(0);
+})
+```
+
+- add a syntax-highlighted example to each method in each API -- if the new SDK
+  does not have methods for a particular API, include a syntax-highlighted
+  comment in the comment structure of the langauge saying that the API cannot
+  be accessed with this SDK.
+
 ## Style conventions
 
 - Always JSON, never `JSON` or json.
