@@ -34,7 +34,7 @@ function extractSections(ast) {
 
 var slugs = {};
 describe('global rules', () => {
-  var ast = remark.parse(allPages);
+  var ast = remark().parse(allPages);
   var seen = {};
   /**
    * Check that titles are unique. This is to ensure that permalinks
@@ -58,7 +58,7 @@ describe('content', () => {
   fs.readdirSync('./content').forEach(function(file) {
     describe(file, () => {
       var content = fs.readFileSync('./content/' + file, 'utf8');
-      var ast = remark.parse(content);
+      var ast = remark().parse(content);
 
       it('links are valid', function() {
         visit(ast, 'link', node => {
