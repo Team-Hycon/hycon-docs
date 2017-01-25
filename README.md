@@ -20,6 +20,10 @@ _Docbox is a [Mapbox](http://mapbox.com/) community open source project. We buil
 
 Documentation is written as Markdown files in the `content` directory, and is organized by the `src/custom/content.js` file - that file requires each documentation page and puts them in order. This demo has a little bit of content - [content/example.md](content/example.md) and [content/introduction.md](content/introduction.md), so that there's an example to follow.
 
+## Testing-driven
+
+Docbox's test suite is an integral part of the design: it's designed to catch any error that would produce invalid documentation and also designed to be extended with custom rules for your documentation standards. Remember to run `npm test` if anything looks funky, and if you have a standard you want to enforce, to enforce it automatically by writing a test!
+
 ## Customization
 
 All custom code - code that relates to brands and specifics of APIs - is in the `./src/custom` directory. Content is [src/custom/content.js](custom/content.js) and brand names & tweaks are in [src/custom/index.js](src/custom/index.js), with inline documentation for both.
