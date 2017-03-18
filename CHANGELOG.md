@@ -1,3 +1,13 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/tmcw/docbox/compare/v1.0.4...v1.0.5) (2017-03-18)
+
+
+### Bug Fixes
+
+* **css:** Fix styling of strong, em, and other inlines (#24) ([c4fefeb](https://github.com/tmcw/docbox/commit/c4fefeb)), closes [#24](https://github.com/tmcw/docbox/issues/24) [#23](https://github.com/tmcw/docbox/issues/23)
+
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
