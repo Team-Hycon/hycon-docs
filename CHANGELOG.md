@@ -6,12 +6,6 @@
 
 * **css:** Fix styling of strong, em, and other inlines (#24) ([c4fefeb](https://github.com/tmcw/docbox/commit/c4fefeb)), closes [#24](https://github.com/tmcw/docbox/issues/24) [#23](https://github.com/tmcw/docbox/issues/23)
 
-
-
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/mapbox/docbox/compare/v1.0.3...v1.0.4) (2017-01-25)
 
