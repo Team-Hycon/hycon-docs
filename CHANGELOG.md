@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/tmcw/docbox/compare/v1.0.6...v1.0.7) (2017-08-01)
+
+
+### Bug Fixes
+
+* **package:** update eslint to version 4.1.0 ([e2838e6](https://github.com/tmcw/docbox/commit/e2838e6))
+* **package:** update remark to version 8.0.0 ([f19be9c](https://github.com/tmcw/docbox/commit/f19be9c))
+
+
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/tmcw/docbox/compare/v1.0.5...v1.0.6) (2017-05-11)
 
