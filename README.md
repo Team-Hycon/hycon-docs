@@ -68,10 +68,11 @@ The `npm run build` command builds a `bundle.js` file that contains all the Java
 
 ---
 
-### Companies using docbox
+### Using docbox
 
 * [Mapbox API Documentation](https://www.mapbox.com/api-documentation/)
 * Mapillary uses docbox for [API Documentation](https://www.mapillary.com/developer/api-documentation/) and [Tiles Documentation](https://www.mapillary.com/developer/tiles-documentation/)
+* The open source [Project OSRM](http://project-osrm.org/docs/v5.10.0/api/#general-options) routing engine uses Docbox for its API documentation.
 * _[do you use docbox? let us know!](https://github.com/tmcw/docbox/issues/new?title=I%27m%20using%20docbox!)_
 
 ### [FAQ & See Also](https://github.com/mapbox/docbox/wiki)
