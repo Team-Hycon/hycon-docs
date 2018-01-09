@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/tmcw/docbox/compare/v1.0.8...v1.0.9) (2018-01-09)
+
+
+### Bug Fixes
+
+* Use property initializer syntax to capture proper 'this' context ([45ac20a](https://github.com/tmcw/docbox/commit/45ac20a))
+* **package:** update browserify to version 15.0.0 ([#63](https://github.com/tmcw/docbox/issues/63)) ([ef939c4](https://github.com/tmcw/docbox/commit/ef939c4))
+* **package:** update remark-html to version 7.0.0 ([#60](https://github.com/tmcw/docbox/issues/60)) ([e099b25](https://github.com/tmcw/docbox/commit/e099b25))
+* **package:** update remark-slug to version 5.0.0 ([#61](https://github.com/tmcw/docbox/issues/61)) ([3c281b3](https://github.com/tmcw/docbox/commit/3c281b3))
+
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/tmcw/docbox/compare/v1.0.7...v1.0.8) (2017-09-20)
 
