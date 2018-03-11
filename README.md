@@ -1,5 +1,6 @@
-# Docbox :blue_book:
-
+<p align='center'><img src='https://c1.staticflickr.com/5/4786/26869034328_9ff90bf2ac.jpg' width=250>
+	<br />docbox</p>
+	
 [![Circle CI](https://circleci.com/gh/tmcw/docbox.svg?style=shield)](https://circleci.com/gh/tmcw/docbox)
 [![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/docbox.svg)](https://greenkeeper.io/)
 
