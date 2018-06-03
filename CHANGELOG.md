@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.10"></a>
+## [1.0.10](https://github.com/tmcw/docbox/compare/v1.0.9...v1.0.10) (2018-06-03)
+
+
+### Bug Fixes
+
+* **package:** update browserify to version 16.0.0 ([#73](https://github.com/tmcw/docbox/issues/73)) ([d8aacd7](https://github.com/tmcw/docbox/commit/d8aacd7))
+* **package:** update eslint-plugin-babel to version 5.0.0 ([#80](https://github.com/tmcw/docbox/issues/80)) ([aa4b2ee](https://github.com/tmcw/docbox/commit/aa4b2ee))
+* Use cross-env to enable Windows + non-cygwin environments to build ([511bc62](https://github.com/tmcw/docbox/commit/511bc62)), closes [#86](https://github.com/tmcw/docbox/issues/86)
+
+
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/tmcw/docbox/compare/v1.0.8...v1.0.9) (2018-01-09)
 
