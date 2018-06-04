@@ -1,6 +1,6 @@
 {
   "name": "docbox",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "an api documentation website",
   "main": "index.js",
   "scripts": {
