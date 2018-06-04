@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "budo src/index.js --serve=bundle.js --live",
-    "changelog": "standard-changelog -w CHANGELOG.md",
+    "release": "standard-version",
     "test": "npm run test-unit && eslint src && npm run prerender -- /dev/null && rm -rf lib",
     "test-unit": "mocha --compilers js:babel-register test",
     "prerender": "babel src --out-dir lib && node lib/render.js",
-    "build": "cross-env NODE_ENV=production browserify src/index.js | uglifyjs -c -m > bundle.js && npm run prerender -- index.html",
-    "release": "standard-version && git push --follow-tags origin master; npm publish"
+    "build": "cross-env NODE_ENV=production browserify src/index.js | uglifyjs -c -m > bundle.js && npm run prerender -- index.html"
   },
   "browserify": {
     "transform": [
@@ -51,8 +50,6 @@
     "remark": "^8.0.0",
     "remark-html": "^7.0.0",
     "remark-slug": "^5.0.0",
-    "standard-changelog": "^1.0.1",
-    "standard-version": "^4.0.0",
     "unist-util-select": "^1.3.0",
     "unist-util-visit": "^1.0.0"
   },
@@ -61,6 +58,7 @@
     "budo": "^11.0.0",
     "cross-env": "^5.1.6",
     "cz-conventional-changelog": "2.1.0",
+    "standard-version": "^4.4.0",
     "expect": "^23.0.1",
     "mocha": "^5.0.0",
     "to-vfile": "^4.0.0",
