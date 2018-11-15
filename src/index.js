@@ -6,6 +6,8 @@ import remark from 'remark';
 import slug from 'remark-slug';
 import content from './custom/content';
 
+// Hycon Public Blockchain
+
 var ast = remark()
   .use(slug)
   .runSync(remark().parse(content));

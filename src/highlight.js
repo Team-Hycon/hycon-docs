@@ -22,6 +22,8 @@ hljs.registerLanguage('bash', bash);
 /**
  * Adapted from remark-highlight.js
  * https://github.com/ben-eb/remark-highlight.js
+ * 
+ * Hycon Public Blockchain
  */
 export default function attacher() {
     function visitor(node) {

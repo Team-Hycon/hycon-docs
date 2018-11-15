@@ -1,3 +1,7 @@
+/* Hycon Public Blockchain */
+
+/* Import custom font */
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro');
 /* Reset â™¥ Adapted from http://meyerweb.com/eric/tools/css/reset/
 ------------------------------------------------------- */
 html, body, div, span, applet, object, iframe,
@@ -48,7 +52,7 @@ button,
 button::-moz-focus-inner {
   border: 0;
   padding: 0;
-  font:15px/20px sans-serif;
+  font:15px/20px Source Sans Pro, sans-serif;
 }
 
 /* Inline Elements: Defaults
@@ -58,7 +62,7 @@ input,
 textarea {
   color:#404040;
   color:rgba(0,0,0,0.75);
-  font:15px/20px sans-serif;
+  font:15px/20px Source Sans Pro, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,7 +75,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:sans-serif;
+  font-family:Source Sans Pro, sans-serif;
   font-weight:bold;
   margin:0;
   }
@@ -114,7 +118,7 @@ p:last-child { margin-bottom:0; }
 small,
 .prose.small,
 .small {
-  font-size:12px;
+  font-size:0.875rem;
   line-height:20px;
   letter-spacing:0;
   }
@@ -356,7 +360,6 @@ a.quiet.dark.active, a.quiet.dark:hover { color:rgba(255,255,255,0.5); }
 .button.fill-lighten1:hover {
   background-color:rgba(255,255,255,0.5);
   }
-
 .button.stroke.quiet {
   background: transparent;
   box-shadow: 0px 0px 0px 2px rgba(0,0,0,0.25) inset;
@@ -802,7 +805,7 @@ em pre,
 pre em,
 pre strong,
 strong pre {
-  font-family:Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+  font-family:Source Code Pro, Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
   white-space: pre-wrap;
 }
 
@@ -818,7 +821,7 @@ strong pre,
 pre.strong,
 .strong pre,
 pre .strong {
-  font-family:Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+  font-family:Source Code Pro, Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
   font-weight:bold;
 }
 
@@ -826,7 +829,7 @@ code em,
 em code,
 pre em,
 em pre {
-  font-family:Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+  font-family:Source Code Pro, Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
   font-style:italic;
 }
 
@@ -924,7 +927,7 @@ input[type=text].code,
 input[type=date].code,
 input[type=email].code,
 input[type=number].code {
-  font-family:Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+  font-family:Source Code Pro, Menlo, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
   white-space: pre-wrap;
   }
 textarea,
@@ -2910,6 +2913,7 @@ Alternate exists for:
 .space-left16 { margin-left:  160px;}
 .space-left20 { margin-left:  200px;}
 .space-left24 { margin-left:  240px;}
+.space-left30 { margin-left:  300px;}
 
 .space-right0  { margin-right:   5px;}
 .space-right1  { margin-right:  10px;}
@@ -2942,6 +2946,7 @@ Alternate exists for:
 .pad0x { padding-right:5px; padding-left:5px; }
 
 .pad1    { padding:10px; }
+.pad15    { padding:15px; }
 .pad2    { padding:20px; }
 .pad4    { padding:40px; }
 
@@ -3027,7 +3032,7 @@ Alternate exists for:
 /* deprecated, use fill-cyan */
 .fill-blue-light  { background:#52a1d8; }
 .fill-cyan        { background:#3bb2d0; }
-.fill-midnight    { background:#142736; }
+.fill-midnight    { background:#102549; }
 
 .fill-blue        { background:#3887be; }
 .fill-denim       { background:#50667f; }
@@ -3038,7 +3043,10 @@ Alternate exists for:
 .fill-yellow      { background:#f1f075; }
 .fill-orange      { background:#f9886c; }
 
-.fill-darkblue    { background-color:#223b53; }
+.fill-darkblue    { background: #00769f; /* Old browsers */
+                    background: -moz-linear-gradient(top, #00769f 0%, #102549 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(top, #00769f 0%,#102549 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to bottom, #00769f 0%,#102549 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
 .fill-red         { background-color:#e55e5e; }
 .fill-teal        { background-color:#41afa5; }
 .fill-pink        { background-color:#ed6498; }
@@ -3055,17 +3063,16 @@ Alternate exists for:
 .fill-lighten3 { background:rgba(255,255,255,0.75); }
 
 .mb-logo {
-  background:#fff;
   position:relative;
   z-index:10;
   }
 
 .mb-logo {
-  background:transparent url(base@2x.png) no-repeat 0 0;
+  background:transparent url(../content/img-logo.png) no-repeat 0 0;
   display:inline-block;
   vertical-align:top;
-  height:40px;
-  width:100px;
+  height:100%;
+  width:auto;
   text-indent:-999em;
   overflow:hidden;
   -webkit-background-size:100px 350px;
@@ -3606,7 +3613,7 @@ img.inline, .inline           { display:inline-block; }
   /* Inline rules */
   body, input, textarea, p {
     color:#000;
-    font:12px/20px sans-serif;
+    font:12px/20px Source Sans Pro, sans-serif;
     }
   .prose a:after { content:' [' attr(href) '] '; }
 

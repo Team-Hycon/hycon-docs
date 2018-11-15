@@ -5,9 +5,9 @@
  * media queries.
  */
 module.exports.brandNames = {
-  desktop: 'Wobble API Documentation',
-  tablet: 'Wobble API Docs',
-  mobile: 'API Docs'
+  desktop: 'beta-0.01 | Nov 15, 2018',
+  tablet: 'beta.01 | 11/15/18',
+  mobile: 'b.01'
 };
 
 /**
@@ -19,7 +19,7 @@ module.exports.brandClasses = 'fill-red';
 /**
  * Text for the link back to the linking website.
  */
-module.exports.backLink = 'Back to wobbles.com';
+module.exports.backLink = 'Back to hycon.io';
 
 /**
  * Runs after highlighting code samples. You can use this

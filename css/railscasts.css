@@ -1,3 +1,5 @@
+/* Hycon Public Blockchain */
+
 .hljs {
   display: block;
   overflow-x: auto;
@@ -22,7 +24,7 @@
 .hljs-regexp,
 .hljs-variable,
 .hljs-template-variable {
-  color: #a5c261;
+  color: #ffc107;
 }
 
 .hljs-subst {
@@ -45,7 +47,7 @@
 .hljs-builtin-name,
 .hljs-attr,
 .hljs-link {
-  color: #6d9cbe;
+  color: #7bf0ff;
 }
 
 .hljs-params {
