@@ -104,7 +104,7 @@ Parameter | Type | Required | Description
 #### Example request
 
 ```curl
-$ curl -X POST http://localhost:2442/api/v1/wallet \
+$ curl -X POST http://localhost:2442/api/v1/HDWallet \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
 	  "mnemonic": "someone window crucial magic shoulder latin satisfy total siege curtain candy trip",
@@ -212,14 +212,12 @@ Parameter | Type | Description
 `pendingAmount` | string | The amount of Hycon pending in the address
 
 
-#### Response (Error)
+**Response Error Table**
 
-```json
-{
-    "name": "{name}",
-    "address": ""
-}
-```
+Status | Error | Message
+-------|-------|--------
+400 | `INVALID_PARAMETER` | Error: {address error}
+
 
 
 ### Getting details of an HD wallet root key
@@ -240,9 +238,9 @@ Parameter | Type | Required | Description
 
 ```json
 {
-	"rootKey": "someone window crucial magic shoulder latin satisfy total siege curtain candy trip",
-    "language": "english",
-    "index": 0
+	"rootKey": "xprv9s21ZrQH143K4AS5aB6u92QhhFNraGRKE9kHUdtkndLLLu4V5CKHugyAGVgs7R38y8gTG2t",
+    "index": 0,
+    "count": 2
 }
 ```
 
@@ -252,7 +250,7 @@ Parameter | Type | Required | Description
 $ curl -X POST http://localhost:2442/api/v1/getHDWalletFromRootKey \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
-	  "rootkey": "someone window crucial magic shoulder latin satisfy total siege curtain candy trip",
+	  "rootkey": "xprv9s21ZrQH143K4AS5aB6u92QhhFNraGRKE9kHUdtkndLLLu4V5CKHugyAGVgs7R38y8gTG2t",
       "index": 0,
       "count": 2
     }'
@@ -262,12 +260,10 @@ $ curl -X POST http://localhost:2442/api/v1/getHDWalletFromRootKey \
 
 Parameter | Type | Description
 ----------|------|------------
-`hash` | string | A Hycon wallet address
+`address` | list | A list of addresses with the following parameters:
 `balance` | string | The amount of Hycon in the address
-`txs` | list | A list of transactions sent to or received from by the address
-`pendings` | list | A list of pending transactions awaiting confirmation
-`minedBlocks` | list | A list of mined blocks by the address
 `pendingAmount` | string | The amount of Hycon pending in the address
+`index` | number | Index value of the address in the HD walelt
 
 #### Response (Success)
 
@@ -472,20 +468,29 @@ POST /api/v1/signedtx
 Parameter | Type | Required | Description 
 ----------|------|----------|------------
 `privateKey` | string | Yes | A Hycon wallet's generated private key
-`from` | string | Yes | A Hycon wallet address of the sender
 `to` | string | Yes | A Hycon wallet address of the receiver
 `amount` | string | Yes | Amount of Hycon to send to recipient
 `fee` | string | Yes | Transaction fee, in Hycon, to complete the transaction
 `nonce` | number | No | The transaction number sent from the Hycon address
 
+#### Example request body
+
+```json
+{
+    "privateKey": "65b4f0c4e5594117e7a7951e60dc81e5701731c61830a30e1bd8199a469f6f90a",
+    "to": "H3zYvzxTDGEF9fZtmzLV78h38J4BR2qnL",
+    "amount": "25.995459977",
+    "fee": "0.000001"
+}
+```
+
 #### Example request
 
 ```curl
-$ curl -X POST http://localhost:2442/api/v1/wallet \
+$ curl -X POST http://localhost:2442/api/v1/signedtx \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
 	  "privateKey": "65b4f0c4e5594117e7a7951e60dc81e5701731c61830a30e1bd8199a469f6f90a",
-	  "from": "H23fF8ktBWYwK7aHFbPSW52LtoHcbDvmT",
       "to": "H3zYvzxTDGEF9fZtmzLV78h38J4BR2qnL",
       "amount": "25.995459977",
       "fee": "0.000001"
@@ -509,7 +514,7 @@ Parameter | Type | Description
 Status | Error | Message
 -------|-------|--------
 404 | `INVALID_PARAMETER` | insufficient wallet balance to send transaction
-404 | `NOT_FOUND` | could not queue transaction
+404 | `INVALID_PARAMETER` | could not queue transaction
 
 ### Creating an outgoing transaction with a signature
 
@@ -534,7 +539,7 @@ Parameter | Type | Required | Description
 #### Example request
 
 ```curl
-$ curl -X POST http://localhost:2442/api/v1/wallet \
+$ curl -X POST http://localhost:2442/api/v1/tx \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
 	  "signature": "65b4f0c4e5594117e7a7951e60dc81e5701731c61830a30e1bd8199a469f6f90a",
@@ -565,7 +570,7 @@ Status | Error | Message
 -------|-------|--------
 404 | `INVALID_PARAMETER` | insufficient wallet balance to send transaction
 404 | `INVALID_PARAMETER` | transaction information or signature is incorrect
-404 | `NOT_FOUND` | could not queue transaction
+404 | `INVALID_PARAMETER` | could not queue transaction
 
 
 ### Creating an outgoing transaction from HD wallet root key
@@ -578,11 +583,11 @@ POST /api/v1/sendTxWithHDWalletRootKey
 
 Parameter | Type | Required | Description 
 ----------|------|----------|------------
-`tx` | list | Yes | Transaction information with the below parameters
-`tx[address]` | string | Yes | A Hycon wallet address of the recipient
-`tx[amount]` | string | Yes | Amount of Hycon to send to the recipient
-`tx[minerFee]` | string | Yes | Transaction fee in Hycon
-`tx[nonce]` | number | No | The transaction number sent from the Hycon address
+`tx` | object | Yes | Transaction information with the below parameters:
+`tx.address` | string | Yes | A Hycon wallet address of the recipient
+`tx.amount` | string | Yes | Amount of Hycon to send to the recipient
+`tx.minerFee` | string | Yes | Transaction fee in Hycon
+`tx.nonce` | number | No | The transaction number sent from the Hycon address
 `rootKey` | string | Yes | Root key of the wallet you want to use for the transaction
 `index` | number | Yes | HD wallet index to a specific wallet address
 
@@ -590,13 +595,11 @@ Parameter | Type | Required | Description
 
 ```json
 {
-    "tx": [
-        {
-            "address": "H23fF8ktBWYwK7aHFbPSW52LtoHcbDvmT",
-            "amount": "0.000000001",
-            "minerFee": "0.000000001"
-        }
-    ],
+    "tx": {
+        "address": "H23fF8ktBWYwK7aHFbPSW52LtoHcbDvmT",
+        "amount": "0.000000001",
+        "minerFee": "0.000000001"
+    },
     "rootKey": "xprv9s21ZrQH143K4AS5aB6u92QhhFNraGRKE9kHUdtkndLLLu4V5CKHugyAGVgs7R38y8gTG2t",
     "index": 0
 }
@@ -605,7 +608,7 @@ Parameter | Type | Required | Description
 #### Example request
 
 ```curl
-$ curl -X POST http://localhost:2442/api/v1/getHDWalletFromRootKey \
+$ curl -X POST http://localhost:2442/api/v1/sendTxWithHDWalletRootKey \
     -H 'Content-Type: application/json;charset=utf-8' \
     -d '{
         "tx": [
@@ -624,7 +627,7 @@ $ curl -X POST http://localhost:2442/api/v1/getHDWalletFromRootKey \
 
 Parameter | Type | Description
 ----------|------|------------
-`hash` | string | A Hycon wallet address
+`hash` | string | Hash representation of the transaction after it is created
 
 #### Response (Success)
 
@@ -636,4 +639,4 @@ Parameter | Type | Description
 
 Status | Error | Message
 -------|-------|--------
-404 | `INVALID_PARAMETER` | Invalid address: Please check 'To address'
+400 | `INVALID_PARAMETER` | Invalid address: Please check 'To address'

@@ -1,6 +1,6 @@
 ## Introduction `api/v1`
 
-The Hycon API provides a simple and powerful interface for Users to programmatically interact with their wallet and the Hycon public network. This HTTP-based [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API uses request and response bodies formatted in JSON, and uses built-in HTTP features, like HTTP verbs, which are understoof by off-the-shelf HTTP clients. 
+The Hycon API provides a simple and powerful interface for Users to programmatically interact with their wallet and the Hycon public network. This HTTP-based [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API uses request and response bodies formatted in JSON, and uses built-in HTTP features, like HTTP verbs, which are understood by off-the-shelf HTTP clients. 
 
 To make the API as explorable and functional as possible, multiple routes may have similar results. One primary difference between similar routes is its interaction with the local Hycon node, such that information may be stored locally upon a successful API call. 
 

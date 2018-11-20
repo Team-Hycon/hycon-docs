@@ -28,4 +28,5 @@ In the event of a _blockchain reorganization_, similar to that in Bitcoin, subsc
 
 Date | Maintainer | Description
 -----|------------|------------
+1542344490 | [Shawn Lee](mailto:shawn@glosfer.com) | fixed typos and updated responses.
 1542263602 | [Shawn Lee](mailto:shawn@glosfer.com) | updates to `api/v1`. `beta-0.01` release in English.

@@ -5,8 +5,8 @@
  * media queries.
  */
 module.exports.brandNames = {
-  desktop: 'beta-0.01 | Nov 15, 2018',
-  tablet: 'beta.01 | 11/15/18',
+  desktop: 'beta-0.01 | Updated: Nov 16, 2018',
+  tablet: 'beta.01 | ^11/16/18',
   mobile: 'b.01'
 };
 

@@ -907,6 +907,14 @@ You can generate new mnemonic phrases to create a BIP39 wallet, such as a Hycon 
 GET /api/v1/getMnemonic/{language}
 ```
 
+**Path Parameter**
+
+Parameter | Type | Required | Description 
+----------|------|----------|------------
+`language` | string | Yes | Language to generate mnemonic with
+
+Please check _Appendix > Language Support_ for a list of supported languages. `language` is not case-sensitive.
+
 #### Example request
 
 ```curl

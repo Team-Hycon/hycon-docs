@@ -19,7 +19,7 @@ If an API call is invalid, a JSON response body will return with the following r
 
 Status code | Description 
 ------------|------------
-`400 OK` | The request was unaccceptable, often due to missing a required parameter.
+`400 Bad Request` | The request was unaccceptable, often due to missing a required parameter.
 `401 Unauthorized` | Authentication was invalid.
 `402 Request Failed` | The parameters were valid but the request failed.
 `404 Not Found` | The requested resource doesn't exist.
