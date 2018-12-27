@@ -3010,7 +3010,7 @@ Alternate exists for:
   position:fixed;
   }
   .fixed-bottom { right:0; bottom:0; left:0; }
-  .fixed-top    { top:0; right:0; left:0; }
+  .fixed-top    { margin-top:32px; top:0; right:0; left:0; }
   .fixed-left   { top:0; bottom:0; left:0; }
   .fixed-right  { top:0; right:0; bottom:0; }
   .fixed-bottomright { bottom:0; right:0; }
@@ -3330,7 +3330,7 @@ pre .vi   { color:#a0a0f0; } /* Name.Variable.Instance */
 /* Markup free clearing
 Details: http://www.positioniseverything.net/easyclearing.html
 ------------------------------------------------------- */
-.clearfix { display:block; }
+.clearfix { display:block; padding-top: 32px;}
 .clearfix:after {
   content:'';
   display:block;

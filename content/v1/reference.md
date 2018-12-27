@@ -20,7 +20,7 @@ SPANISH | `spanish`
 In the event of a _blockchain reorganization_, similar to that in Bitcoin, subscriptions will receive one or more blocks that were previously thought to be in the difficultywise-longest well-formed blockchain. These blocks will be returned as a result of a new difficultywise-longest well-formed blockchain.
 
 <figure>
-    <img src="../content/img/chain_reorg.png" style="width: 75%; max-width: 500px; height: auto; margin: 0 auto;" ></img>
+    <img src="../../content/img/chain_reorg.png" style="width: 75%; max-width: 500px; height: auto; margin: 0 auto;" ></img>
     <span style="font-size: .7em;"><b><i>Figure 1</i></b> | In the event of a subscription trigger from a reorganization, the blocks inside the red box will be returned, wherein the height of the new difficultywise-longest well-formed blockchain is higher than the other.</span>
 </figure>
 

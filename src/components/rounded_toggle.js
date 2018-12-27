@@ -9,13 +9,14 @@ var roundedToggleOptionType = PropTypes.shape({
 export default class RoundedToggle extends React.PureComponent {
   static propTypes = {
     options: PropTypes.arrayOf(roundedToggleOptionType).isRequired,
+    className: PropTypes.string,
     active: roundedToggleOptionType,
     short: PropTypes.bool,
     onChange: PropTypes.func.isRequired
   }
   render() {
-    let { options, active } = this.props;
-    return (<div className='rounded-toggle inline short'>
+    let { options, active, className } = this.props;
+    return (<div style={{ backgroundColor: "#e4e4e4" }} className={`rounded-toggle inline short ${className === undefined ? '' : className}`}>
       {options.map(option =>
         (<RoundedToggleOption
           key={option.value}

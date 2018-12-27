@@ -9,11 +9,23 @@ var fs = require('fs');
  * into strings of those files' content before the file is delivered to a
  * browser: the content is read ahead-of-time and included in bundle.js.
  */
-module.exports =
-  '# Topics\n' +
-  fs.readFileSync('./content/introduction.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/api_requests.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/api_responses.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/network.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/node.md', 'utf8') + '\n' +
-  fs.readFileSync('./content/reference.md', 'utf8') + '\n';
+module.exports = 
+  [
+    '# Topics\n' +
+    fs.readFileSync('./content/v1/introduction.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v1/api_requests.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v1/api_responses.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v1/network.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v1/node.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v1/reference.md', 'utf8') + '\n',
+    '# Topics\n' +
+    fs.readFileSync('./content/v3/introduction.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/api_requests.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/api_responses.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/address.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/block.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/network.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/tx.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/wallet.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/reference.md', 'utf8') + '\n'
+  ]

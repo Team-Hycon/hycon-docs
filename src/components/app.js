@@ -11,7 +11,7 @@ import qs from 'querystring';
 let slugger = new GithubSlugger();
 let slug = title => { slugger.reset(); return slugger.slug(title); };
 
-let languageOptions = [
+const languageOptions = [
   { title: 'cURL',
     short: 'cURL',
     value: 'curl' },
@@ -190,7 +190,7 @@ export default class App extends React.PureComponent {
 
       {/* Language toggle */ }
       <div className={`fixed-top ${queryMatches.desktop && 'space-left24'}`}>
-        <div className={`events fill-light bottom-shadow pad1 ${col1 ? '' : 'col6 pin-topright'} ${queryMatches.tablet ? 'dark fill-midnight' : ''} ${queryMatches.mobile ? 'space-top5 fixed-topright' : ''}`}>
+        <div className={`events fill-light bottom-shadow pad1 ${col1 ? '' : 'col6 pin-topright'} ${queryMatches.tablet ? 'dark fill-midnight' : ''} ${queryMatches.mobile ? 'space-top9 fixed-topright' : ''}`}>
           <div className='space-right1 small quiet inline'>
             Show examples in:
           </div>
