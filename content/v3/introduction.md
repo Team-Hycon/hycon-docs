@@ -2,7 +2,7 @@
 
 The Hycon API provides a simple and powerful interface for Users to programmatically interact with their wallet and the Hycon public network. This HTTP-based [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API uses request and response bodies formatted in JSON, and uses built-in HTTP features, like HTTP verbs, which are understood by off-the-shelf HTTP clients. 
 
-API v3 is an architectural upgrade over its previous version, and only supports routes that do not store information on the local system. The endpoints are now distributed into five root routes: address, block, network, tx and wallet. Starting from API v3, we support both url and query parameters in all requests. We do, however, recommend that requests are sent via query parameters with matching parameter name and value.
+API v3 is an architectural upgrade over its previous version, and only supports routes that do not store information on the local system. The endpoints are now distributed into four root routes: [address](/#prerequisites-address), [block](/#prerequisites-block), [network](/#prerequisites-network), and [transactions](/#prerequisites-tx). Starting from API v3, we support both url and query parameters in all requests. We do, however, recommend that requests are sent via query parameters with matching parameter name and value.
 
 This API reference provides information on available endpoints and how to interact with it.
 

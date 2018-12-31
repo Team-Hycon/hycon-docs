@@ -5,9 +5,9 @@
  * media queries.
  */
 module.exports.brandNames = {
-  desktop: 'beta-0.01 | Updated: Nov 16, 2018',
-  tablet: 'beta.01 | ^11/16/18',
-  mobile: 'b.01'
+  desktop: 'beta-1.01 | Updated: December 31, 2018',
+  tablet: 'beta1.01 | ^12/31/18',
+  mobile: 'b1.01'
 };
 
 /**
