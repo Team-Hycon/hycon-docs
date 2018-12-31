@@ -201,7 +201,7 @@ Parameter | Type | Description
 ----------|------|------------
 **height** | number | Height of the block.
 **hash** | string | Hash value representing the block.
-**difficulty** | number | Difficulty of the mined block.
+**difficulty** | string | Difficulty of the mined block.
 **merkleRoot** | string | Merkle hash of all transactions in the block.
 **stateRoot** | string | Hash of the world state at that block.
 **timestamp** | number | Timestamp when the block was added.
@@ -405,7 +405,7 @@ Parameter | Type | Description
 ----------|------|------------
 **height** | number | Height of the block.
 **hash** | string | Hash value representing the block.
-**difficulty** | number | Difficulty of the mined block.
+**difficulty** | string | Difficulty of the mined block.
 **merkleRoot** | string | Merkle hash of all transactions in the block.
 **stateRoot** | string | Hash of the world state at that block.
 **timestamp** | number | Timestamp when the block was added.

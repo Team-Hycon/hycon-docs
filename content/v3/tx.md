@@ -199,18 +199,25 @@ Status | Error | Message
 
 Request pending transactions information. 
 
-The parameter can have an address value. When passing an address value as parameter, it returns only a list of pending transactions associated with that address. If the address parameter is not set, it returns all transactions in the transaction pool. The route supports both `query` and `url` parameter methods.
+The parameter can have an address and count value. When passing an address value as parameter, it returns only a list of pending transactions associated with that address. If the `address` parameter is not set, it returns all transactions in the transaction pool. If the `address` parameter is set, but not the `count` parameter, it returns all transactions associated with the address. The route supports both `query` and `url` parameter methods.
 
 ### Query method (pending txs)
 
 ```endpoint
-GET /api/v3/tx/pending?{address}
+GET /api/v3/tx/pending?{address}&{count}
 ```
 
 #### Example request without `address`
 
 ```curl
 curl -X GET http://localhost:2442/api/v3/tx/pending \
+-H 'Content-Type: application/json;charset=utf-8'
+```
+
+#### Example request without `address` with `count`
+
+```curl
+curl -X GET http://localhost:2442/api/v3/tx/pending\?count\=2 \
 -H 'Content-Type: application/json;charset=utf-8'
 ```
 
@@ -221,22 +228,37 @@ curl -X GET http://localhost:2442/api/v3/tx/pending\?address\=H2hQWtyFT1dvm5o6Hv
 -H 'Content-Type: application/json;charset=utf-8'
 ```
 
+#### Example request with `address` and `count`
+
+```curl
+curl -X GET http://localhost:2442/api/v3/tx/pending\?address\=H2hQWtyFT1dvm5o6HvuF1oHq92bbb6ZVY\&count\=3 \
+-H 'Content-Type: application/json;charset=utf-8'
+```
+
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
 Parameter | Required | Description 
 ----------|----------|------------
 `address` | No | An address value to query pending transaction information
+`count` | No | Number of most recent transactions to return
 
 ### URL method (pending txs)
 
 ```endpoint
-GET /api/v3/tx/pending/:address
+GET /api/v3/tx/pending/:address?{count}
 ```
 
 #### Example request without `address`
 
 ```curl
 curl -X GET http://localhost:2442/api/v3/tx/pending \
+-H 'Content-Type: application/json;charset=utf-8'
+```
+
+#### Example request without `address` with `count`
+
+```curl
+curl -X GET http://localhost:2442/api/v3/tx/pending\?count\=2 \
 -H 'Content-Type: application/json;charset=utf-8'
 ```
 
@@ -247,11 +269,19 @@ curl -X GET http://localhost:2442/api/v3/tx/pending/H2hQWtyFT1dvm5o6HvuF1oHq92bb
 -H 'Content-Type: application/json;charset=utf-8'
 ```
 
+#### Example request with `address` and `count`
+
+```curl
+curl -X GET http://localhost:2442/api/v3/tx/pending/H2hQWtyFT1dvm5o6HvuF1oHq92bbb6ZVY\?count\=3 \
+-H 'Content-Type: application/json;charset=utf-8'
+```
+
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
 Parameter | Required | Description 
 ----------|----------|------------
 `address` | No | An address value to query pending transaction information
+`count` | No | Number of most recent transactions to return
 
 _If the address has fewer transactions than `count`, the returned list of transactions will be of length less than `count`._ 
 
@@ -297,7 +327,7 @@ Status | Error | Message
 Create a transaction on the Hycon network.
 
 ```endpoint
-POST /api/v3/tx/pending/:address
+POST /api/v3/tx/
 ```
 
 **Body (Content-Type: application/json):**
@@ -328,7 +358,7 @@ curl -X POST http://localhost:2442/api/v3/tx \
         }'
 ```
 
-### Response (create txs) `200 OK, application/json`
+### Response (created tx) `200 OK, application/json`
 
 Parameter | Type | Description
 ----------|------|------------

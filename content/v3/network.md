@@ -175,7 +175,8 @@ Parameter | Required | Description
 ### Response (specified peer) `200 OK, application/json`
 
 Parameter | Type | Description
-----------|------|------------**host** | string | The host value of the peer.
+----------|------|------------
+**host** | string | The host value of the peer.
 **port** | number | The port value of the peer.
 **successOutCount** | number | The number of successful outbound connections.
 **successInCount** | number | The number of successful inbound connections.
