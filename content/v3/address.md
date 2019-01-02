@@ -24,9 +24,9 @@ curl -X GET http://localhost:2442/api/v3/address\?address\=H497fHm8gbPZxaXySKpV1
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | A Hycon wallet address to be used in the query
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | A Hycon wallet address to be used in the query
 
 ### URL method (get address)
 
@@ -43,9 +43,9 @@ curl -X GET http://localhost:2442/api/v3/address/H497fHm8gbPZxaXySKpV17a7beYBF9U
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | A Hycon wallet address to be used in the query
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | A Hycon wallet address to be used in the query
 
 ### Response (specified block) `200 OK, application/json`
 
@@ -69,4 +69,4 @@ Parameter | Type | Description
 
 Status | Error | Message
 -------|-------|--------
-400 | `NOT_FBAD_REQUESTOUND` | Error: Address must be 20 bytes long
+400 | `BAD_REQUEST` | Error: Address must be 20 bytes long

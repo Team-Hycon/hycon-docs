@@ -29,9 +29,9 @@ curl -X GET http://localhost:2442/api/v3/tx\?hash\=Fjbnhvo1Qy4KisAgpTbrbYn2u24nf
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`hash` | string | Yes | The hash value of the transaction
+Parameter | Required | Description 
+----------|----------|------------
+`hash` | Yes | The hash value of the transaction
 
 ### URL method (specified tx)
 
@@ -48,9 +48,9 @@ curl -X GET http://localhost:2442/api/v3/tx/Fjbnhvo1Qy4KisAgpTbrbYn2u24nfskDuyUw
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`hash` | string | Yes | The hash value of the transaction
+Parameter | Required | Description 
+----------|----------|------------
+`hash` | Yes | The hash value of the transaction
 
 ### Response (specified tx) `200 OK, application/json`
 
@@ -119,10 +119,10 @@ curl -X GET http://localhost:2442/api/v3/tx\?address\=H497fHm8gbPZxaXySKpV17a7be
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | An address value to query transaction information
-`count` | number | No | Number of most recent transactions to return, if applicable (_Default: 10_)
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | An address value to query transaction information
+`count` | No | Number of most recent transactions to return, if applicable (_Default: 10_)
 
 _If the address has fewer transactions than `count`, the returned list of transactions will be of length less than `count`._ 
 
@@ -148,10 +148,10 @@ curl -X GET http://localhost:2442/api/v3/tx/H497fHm8gbPZxaXySKpV17a7beYBF9Ut3\?c
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | An address value to query transaction information
-`count` | number | No | Number of most recent transactions to return, if applicable (_Default: 10_)
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | An address value to query transaction information
+`count` | No | Number of most recent transactions to return, if applicable (_Default: 10_)
 
 _If the address has fewer transactions than `count`, the returned list of transactions will be of length less than `count`._ 
 
@@ -223,9 +223,9 @@ curl -X GET http://localhost:2442/api/v3/tx/pending\?address\=H2hQWtyFT1dvm5o6Hv
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | No | An address value to query pending transaction information
+Parameter | Required | Description 
+----------|----------|------------
+`address` | No | An address value to query pending transaction information
 
 ### URL method (pending txs)
 
@@ -249,9 +249,9 @@ curl -X GET http://localhost:2442/api/v3/tx/pending/H2hQWtyFT1dvm5o6HvuF1oHq92bb
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | No | An address value to query pending transaction information
+Parameter | Required | Description 
+----------|----------|------------
+`address` | No | An address value to query pending transaction information
 
 _If the address has fewer transactions than `count`, the returned list of transactions will be of length less than `count`._ 
 

@@ -17,9 +17,9 @@ GET /api/v3/block?{range}
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`range` | number | No | Include blocks within the specified range. The block tip is used as a reference. (_Default: 1_)
+Parameter | Required | Description 
+----------|----------|------------
+`range` | No | Include blocks within the specified range. The block tip is used as a reference. (_Default: 1_)
 
 _If you want to look up previous blocks based on block tip, set the `range` parameter as a negative value._
 
@@ -31,7 +31,7 @@ Parameter | Type | Description
 ----------|------|------------
 **height** | number | Height of the block.
 **hash** | string | Hash value representing the block.
-**difficulty** | number | Difficulty of the mined block.
+**difficulty** | string | Difficulty of the mined block.
 **merkleRoot** | string | Merkle hash of all transactions in the block.
 **stateRoot** | string | Hash of the world state at that block.
 **timestamp** | number | Timestamp when the block was added.
@@ -141,21 +141,21 @@ curl -X GET http://localhost:2442/api/v3/block\?height\=412510 \
 #### Example request with `hash` specified
 
 ```curl
-curl -X GET http://localhost:2442/api/v3/block\?height\=412510 \
+curl -X GET http://localhost:2442/api/v3/block\?hash\=6ZDkzCeih26nQ6ry84FhvJackNpRgKGKmFCrhvQsdfMf \
 -H 'Content-Type: application/json;charset=utf-8'
 ```
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`hash` | string | No | The hash value of the block
-`height` | string | No | The height value of the block
-`range` | string | No | Include blocks within the specified range. (_Default: 1_)
+Parameter | Required | Description 
+----------|----------|------------
+`hash`  | Yes* | The hash value of the block
+`height` | Yes* | The height value of the block
+`range` | No | Include blocks within the specified range. (_Default: 1_)
 
 _If the value of `range` is positive and greater than 1, a list of blocks starting from the specified `hash` or `height` is returned. If the `range` is negative, the list of blocks ending from the specified `hash` or `height` is returned._
 
-_Only one of either the `hash` or `height` parameter should be used. If both are passed as query parameters, the `hash` parameter is used._
+_*Only one of either the `hash` or `height` parameter should be used. If both are passed as query parameters, the `hash` parameter is used._
 
 ### URL method (specified block)
 
@@ -183,11 +183,11 @@ curl -X GET http://localhost:2442/api/v3/block/6ZDkzCeih26nQ6ry84FhvJackNpRgKGKm
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`hash` | string | Yes* | The hash value of the block
-`height` | string | Yes* | The height value of the block
-`range` | string | No | Include blocks within the specified range. (_Default: 1_)
+Parameter | Required | Description 
+----------|----------|------------
+`hash` | Yes* | The hash value of the block
+`height` | Yes* | The height value of the block
+`range` | No | Include blocks within the specified range. (_Default: 1_)
 
 _If the value of `range` is positive and greater than 1, a list of blocks starting from the specified `hash` or `height` is returned. If the `range` is negative, the list of blocks ending from the specified `hash` or `height` is returned._
 
@@ -300,10 +300,10 @@ curl -X GET http://localhost:2442/api/v3/block/mined\?address\=H497fHm8gbPZxaXyS
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | An address value to query mined block information
-`count` | number | No | Number of mined blocks to return, if applicable (_Default: 1_)
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | An address value to query mined block information
+`count` | No | Number of mined blocks to return, if applicable (_Default: 1_)
 
 ### URL method (mined blocks)
 
@@ -327,10 +327,10 @@ curl -X GET http://localhost:2442/api/v3/block/mined/H497fHm8gbPZxaXySKpV17a7beY
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`address` | string | Yes | An address value to query mined block information
-`count` | number | No | Number of mined blocks to return, if applicable (_Default: 1_)
+Parameter | Required | Description 
+----------|----------|------------
+`address` | Yes | An address value to query mined block information
+`count` | No | Number of mined blocks to return, if applicable (_Default: 1_)
 
 ### Response (mined blocks) `200 OK, application/json`
 

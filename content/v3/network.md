@@ -40,6 +40,7 @@ Parameter | Type | Description
 
 Status | Error | Message
 -------|-------|--------
+404 | `NOT_FOUND` | Tip information is undefined in consensus.
 500 | `INTERNAL_SERVER_ERROR` | Internal Server Error occurs Error: There is no txdb to query the burn amount.
 
 
@@ -65,9 +66,9 @@ curl -X GET http://localhost:2442/api/v3/network?count=2 \
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`count` | number | No | The number of peers to return
+Parameter | Required | Description 
+----------|----------|------------
+`count` | Yes | The number of peers to return
 
 ### URL method (peer list)
 
@@ -84,9 +85,9 @@ curl -X GET http://localhost:2442/api/v3/network/3 \
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`count` | number | No | The number of peers to return
+Parameter | Required | Description 
+----------|----------|------------
+`count` | Yes | The number of peers to return
 
 ### Response (peer list) `200 OK, application/json`
 
@@ -148,9 +149,9 @@ curl -X GET http://localhost:2442/api/v3/network?host=54.188.174.194 \
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`host` | string | Yes | The host information of the peer to be queried.
+Parameter | Required | Description 
+----------|----------|------------
+`host` | Yes | The host information of the peer to be queried.
 
 ### URL method (specified peer)
 
@@ -167,9 +168,9 @@ curl -X GET http://localhost:2442/api/v3/network/54.188.174.194 \
 
 **Request Body - `Content-Type: application/json;charset=utf-8`**
 
-Parameter | Type | Required | Description 
-----------|------|----------|------------
-`host` | string | Yes | The host information of the peer to be queried.
+Parameter | Required | Description 
+----------|----------|------------
+`host` | Yes | The host information of the peer to be queried.
 
 ### Response (specified peer) `200 OK, application/json`
 
