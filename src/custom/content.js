@@ -26,5 +26,6 @@ module.exports =
     fs.readFileSync('./content/v3/block.md', 'utf8') + '\n' +
     fs.readFileSync('./content/v3/network.md', 'utf8') + '\n' +
     fs.readFileSync('./content/v3/tx.md', 'utf8') + '\n' +
+    fs.readFileSync('./content/v3/wallet.md', 'utf8') + '\n' +
     fs.readFileSync('./content/v3/reference.md', 'utf8') + '\n'
   ]

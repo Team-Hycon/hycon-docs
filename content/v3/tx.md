@@ -129,7 +129,7 @@ _If the address has fewer transactions than `count`, the returned list of transa
 ### URL method (tx by address)
 
 ```endpoint
-GET /api/v3/tx/:address?&{count}
+GET /api/v3/tx/:address?{count}
 ```
 
 #### Example request without `count`
@@ -158,6 +158,7 @@ _If the address has fewer transactions than `count`, the returned list of transa
 ### Response (tx by address) `200 OK, application/json`
 
 A transaction list with the following parameters is returned:
+
 Parameter | Type | Description
 ----------|------|------------
 **amount** | string | Amount of Hycon to send to the recipient.

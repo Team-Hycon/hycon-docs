@@ -28,5 +28,6 @@ In the event of a _blockchain reorganization_, similar to that in Bitcoin, subsc
 
 Date | Maintainer | Description
 -----|------------|------------
+1559718180 | [Shawn Lee](mailto:shawn@glosfer.com) | added `/wallet` section.
 1546405803 | [Shawn Lee](mailto:shawn@glosfer.com) | fixed typos, removed request types.
 1546232471 | [Jimin Kim](kjm@glosfer.com), [Joonbum Lee](mailto:jblee@glosfer.com), [Shawn Lee](mailto:shawn@glosfer.com) | added `api/v3`. `beta-1.01` release in English.
