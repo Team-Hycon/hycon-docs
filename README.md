@@ -1,83 +1,116 @@
-<p align='center'><img src='https://c1.staticflickr.com/5/4786/26869034328_9ff90bf2ac.jpg' width=250>
-	<br />docbox</p>
-	
-[![Circle CI](https://circleci.com/gh/tmcw/docbox.svg?style=shield)](https://circleci.com/gh/tmcw/docbox)
-[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/docbox.svg)](https://greenkeeper.io/)
+<h1 align="center">
+  <img src="https://github.com/Team-Hycon/hycon-gui/blob/e7ecaec870f78e7c01c9ea6acef32987a512275b/hummingbird-desktop/build/icon.png" alt="Hycon API" width="200">
+</h1>
+<h4 align="center">Hycon API Docs - <a href="docs.hycon.io">docs.hycon.io</a></h4>
 
-**Docbox is an open source REST API documentation system.** It takes structured Markdown files and generates a friendly two-column layout with navigation, permalinks, and examples. The documentation source files that Docbox uses are friendly for documentation authors and free of presentational code: it's Markdown.
+## Building & Deploying
 
-[![](https://farm2.staticflickr.com/1534/24963539843_e26a00b3e1_b.jpg)](https://67-53007065-gh.circle-artifacts.com/0/tmp/circle-artifacts.NCC9T6a/index.html#our-api)
+Install the dependencies: `npm install`
 
-_[Demo documentation](https://67-53007065-gh.circle-artifacts.com/0/tmp/circle-artifacts.NCC9T6a/index.html#our-api)_
+Testing with live server: `npm run start`
 
-**Docbox is a JavaScript application written with React.** The core magic is thanks to the [remark](http://remark.js.org/) Markdown parser, which enables the layout: after parsing a file into an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree), we can move examples to the right, prose to the left, and build the navigation system.
+Building: `npm run build`
 
-**It has a supercharged test suite**. Our tests check for everything from broken links to invalid examples and structure problems: this way, the application is only concerned with output and you can proactively enforce consistency and correctness. We even extract JavaScript examples from documentation and test them with [eslint](http://eslint.org/)
+The files to serve are in the `/docbox` directory, namely: `index.html`, `bundle.js`, and the `/css` folder.
 
-**When you're ready to ship**, Docbox's `build` task minifies JavaScript and uses React's server rendering code to make documentation indexable for search engines and viewable without JavaScript.
+## Updating documentation
 
-## Writing Documentation
+The documentation content is located under `/docbox/content`. The documentation files are in markdown (`.md`) format, and are parsed into the `bundle.js`. 
 
-Documentation is written as Markdown files in the `content` directory, and is organized by the `src/custom/content.js` file - that file requires each documentation page and puts them in order. This demo has a little bit of content - [content/example.md](content/example.md) and [content/introduction.md](content/introduction.md), so that there's an example to follow.
+To make it easier to maintain, update, and add to the documentation:
 
-## Testing-driven
+- each version has its own directory (i.e. `v1` contains only API v1).
 
-Docbox's test suite is an integral part of the design: it's designed to catch any error that would produce invalid documentation and also designed to be extended with custom rules for your documentation standards. Remember to run `npm test` if anything looks funky, and if you have a standard you want to enforce, to enforce it automatically by writing a test!
+- each section is split into their respective topics (i.e. `address.md` refers to address-related API).
 
-## Customization
+- images are stored in the `/img` directory.
 
-All custom code - code that relates to brands and specifics of APIs - is in the `./src/custom` directory. Content is [src/custom/content.js](custom/content.js) and brand names & tweaks are in [src/custom/index.js](src/custom/index.js), with inline documentation for both.
+### Adding a new version
 
-## Development
+To add a new version (i.e. `v4`)
 
-We care about the ease of writing documentation. Docbox comes with batteries included: after you `npm install` the project, you can run `npm start` and its development server, [budo](https://github.com/mattdesl/budo), will serve the website locally and update automatically.
+create a new directory for the API in `/docbox/content`
 
-### Requirements
+copy the existing markdown files from another version, or create new `.md` files to write the documentation
 
-* Node v4 or higher
-* NPM
-* Git
+In order to switch between API versions, go to `/docbox/src/index.js`:
 
-To run the site locally:
+Add another array entry to `const version[]`
 
-1. Clone this repository
-	2. `git clone https://github.com/tmcw/docbox.git`
-2. `npm install`
-3. `npm start`
-4. Open http://localhost:9966/
+```javascript
+// Example
+const version = [
+  { title: 'api/v1',
+    short: 'v1',
+    value: '0',
+  },
+  {
+    title: 'api/v3',
+    short: 'v3',
+    value: '1',
+  },
+  // New entry
+  {
+    title: 'api/v4',
+    short: 'v4',
+    value: '2',
+  }
+]
+```
 
-## Tests
+In `ReactDOM.render`, add another `<App/>` component with the new value added above
 
-Tests cover both the source code of Docbox as well as the content in the `content/` directory.
+```javascript
+// Example
+{ api_version.value === "0" ? 
+    <App ast={ast} content={content[0]} /> :
+    // You will need to nest ternaries or create a function that returns the component
+    // and the appropriate content value
+    api_version.value === "1" ? 
+        <App ast={ast} content={content[1]} /> :
+        <App ast={ast} content={content[2]} />    
+}
+```
 
-To run tests:
+the `<RoundedToggle/>` component will not be useful past two versions, so changing this component to a dropdown menu or similar is ideal. To keep the version persistent after leaving the browser tab, add a `storage.setItem(“version”, JSON.stringify(version))` as part of the `onChange` or `onClick` action.
 
-1. Clone this repository
-	2. `git clone https://github.com/tmcw/docbox.git`
-2. `npm install`
-3. `npm test`
+After updating `index.js`, go to `/docbox/src/custom` and edit `content.js` by adding another entry to `module.exports`:
 
+```javascript
+ module.exports = 
+  [
+    '# Topics\n' 
+    // Truncated
+    ,
+    '# Topics\n'
+    // Truncated
+    ,
+    // New entry
+    '# Topics\n' +
+    fs.readFileSync('./content/v4/introduction.md', 'utf8') + '\n'
+  ]
+```
 
-## Deployment
+Before building and deploying, update the version and changelog of the documentation.
 
-The `npm run build` command builds a `bundle.js` file that contains all the JavaScript code and content needed to show the site, and creates an `index.html` file that already contains the site content. Note that this _replaces_ the existing `index.html` file, so it's best to run this only when deploying the site and to undo changes to `index.html` if you want to keep working on content.
+To update the version, go to `/docbox/src/custom/index.js` and update the `module.exports.brandName` variable:
 
-1. Clone this repository
-	2. `git clone https://github.com/tmcw/docbox.git`
-2. `npm install`
-3. `npm run build`
+```javascript
+// Example
+module.exports.brandNames = {
+  desktop: 'beta-1.03 | Updated: June 05, 2019',
+  tablet: 'beta1.03 | ^06/05/19',
+  mobile: 'b1.03'
+};
+```
 
----
+To update the changelog, go to `/docbox/content/{version}/reference.md` and update the `## Changelog` section:
 
-### Using docbox
+```
+// Example
+## Changelog
 
-* [Mapbox API Documentation](https://www.mapbox.com/api-documentation/)
-* Mapillary uses docbox for [API Documentation](https://www.mapillary.com/developer/api-documentation/) and [Tiles Documentation](https://www.mapillary.com/developer/tiles-documentation/)
-* The open source [Project OSRM](http://project-osrm.org/docs/v5.10.0/api/#general-options) routing engine uses Docbox for its API documentation.
-* [8th Wall](https://docs.8thwall.com/) uses Docbox for the documentation of their AR product
-* _[do you use docbox? let us know!](https://github.com/tmcw/docbox/issues/new?title=I%27m%20using%20docbox!)_
-
-### [FAQ & See Also](https://github.com/mapbox/docbox/wiki)
-
-Props to [Tripit's Slate project](https://github.com/tripit/slate), which served
-as the inspiration for Docbox's layout. We also maintain a [list of similar projects](https://github.com/tmcw/docbox/wiki).
+Date | Maintainer | Description
+-----|------------|------------
+1546232471 | Author | added `api/v3`. `beta-1.01` release in English.
+```
